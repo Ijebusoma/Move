@@ -7,3 +7,5 @@ I also use the Google map API to get a recent picture of the location inputted b
 So, essentially, Move is built to help a user decide if making a relocation is actually a wise course 
 and to get a pool of relevant resources on the location of choice.
 
+P.S: If you have a suggestion on a cooler name, I will be glad to hear it. You can Tweet at me @VanessaOsuka.
+
