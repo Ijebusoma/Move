@@ -1,0 +1,34 @@
+$.getJSON("http://maps.googleapis.com/maps/api/streetview?size=600x300&location=" + street, + city + "?callback=?", function(json) {
+
+               //TMDb is nice enough to return a message if nothing was found, so we can base our if statement on this information
+
+               if (json != "Nothing found."){
+
+                  //Display the poster and a message announcing the result
+
+                     $('#poster').html('<h2 class="loading">Well, gee whiz! We found you a poster, skip!</h2><img id="thePoster" src=' + json[0].posters[0].image.url + ' />');
+
+
+
+
+
+
+
+
+
+
+$.ajax({
+            method:"GET";
+            url: "http://maps.googleapis.com/maps/api/streetview?size=600x300&location=$street, $city", 
+            dataType: "json"
+
+            success: function(result){
+       $body.append('<img class="bgimg" src=""');
+    }});
+
+
+$.ajax({url: "demo_test.txt", success: function(result){
+    
+ $.getJSON("http://maps.googleapis.com/maps/api/streetview?size=600x300&location=" + street, + city + "?callback=?", 
+ function(json) {
+   alert("hhh");
