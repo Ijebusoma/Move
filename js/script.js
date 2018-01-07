@@ -21,15 +21,22 @@ function loadData() {
 
 var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 url += '?' + $.param({
-  'api-key': "7cc821deaac044a7b70309bff886",
+  'api-key': "7cc821deaac044a7b70309bff886336e",
   'sort':"newest",
   'q':city
 });
+var wikiUrl="http://en.wikipedia.org/w/api.php?action=opensearch&search="+city+
+             "&format=json&callback=wikiCallback";
+
+var wikiRequestTimeout = setTimeout(function()
+{
+$wikiElem.text("failed to get Wiki resources");
+}, 8000);
 
 
 $.getJSON(url, function (data)
 {
-$nytHeaderElem.text("New York Times Articles about"  +  city);
+$nytHeaderElem.text("New York Times Articles about "  +  city);
 articles = data.response.docs;
 for(i=0;i<articles.length;i++)
 {
@@ -40,47 +47,27 @@ $nytElem.append('<li class="article">'+'<a href="'+article.web_url+'">'+article.
 
 }).error(function (e)
 {
-alert("there was a problem fetching articles");
+$nytElem.text("Could not load articles")
 });
 
 
-
-
-/**
 $.ajax({
-   url: url,
-   data: {
-      format: 'json'
-   },
-   success:function(data)
-   {
-   $nytHeaderElem.text("New York Times Articles about "  +  city);
-articles = data.response.docs;
-for(i=0;i<articles.length;i++)
-{
-var article = articles[i];
-$nytElem.append('<li class="article">'+'<a href="'+article.web_url+'">'+article.headline.main+'</a>'+
-'<p>'+article.snippet+'</p>'+'</li>');
-};
-   },
-   error: function() {
-      $nytHeaderElem.text("Could not fetch articles from New York Times, check your connection");
-   }
-});
-return false;
+  url:wikiUrl,
+  dataType:"jsonp",
+  success:(function(response)
+  {
+  var articleList = response[1];
+  for(var i=0;i<articleList.length;i++)
+  {
+  articleStr = articleList[i];
+  var url = "http://en.wikipedia.org/wiki/" +articleStr;
+  $wikiElem.append('<li><a href="'+url+'">'+articleStr+'</li></a>');
+  clearTimeout(wikiRequestTimeout);
+  };
 
-/**
- $.getJSON(url, function (data)
-{
-$nytHeaderElem.text("New York Times Articles about" + city);
-articles = data.response.docs;
-alert("get json function");
-
-
-
+  })
 });
 
-**/
 return false;
 }
 
