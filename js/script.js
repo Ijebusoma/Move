@@ -21,7 +21,7 @@ function loadData() {
 
 var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 url += '?' + $.param({
-  'api-key': "7cc821deaac044a7b70309bff886336e",
+  'api-key': "API_KEY",
   'sort':"newest",
   'q':city
 });
