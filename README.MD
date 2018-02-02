@@ -6,6 +6,7 @@ Plugging into the New York Times and Wikipedia API using Ajax, latest news on a 
 I also use the Google map API to get a recent picture of the location inputted by the user.
 So, essentially, Move is built to help a user decide if making a relocation is actually a wise course 
 and to get a pool of relevant resources on the location of choice.
+[Move Demo](https://ijebusoma.github.io/Move/)
 
 P.S: If you have a suggestion on a cooler name, I will be glad to hear it. You can Tweet at me @VanessaOsuka.
 
